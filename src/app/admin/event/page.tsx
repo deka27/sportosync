@@ -131,27 +131,46 @@ function EventTable({ events }: { events: Event[] }) {
 }
 
 export default function Page(){
-  const [fetchError, setFetchError] = useState<string | null>(null);;
-  const [events, setEvents] = useState<Event[] | null>(null);;
 
-  useEffect(() => {
-    const fetchEvents = async () => {
-      const { data, error } = await supabase.from("event").select();
+// Define a state variable 'fetchError' and its setter 'setFetchError'
+const [fetchError, setFetchError] = useState<string | null>(null);
 
-      if (error) {
-        setFetchError("Could not fetch the data");
-        setEvents(null);
-        console.log(error);
-      }
+// Define a state variable 'events' and its setter 'setEvents'
+const [events, setEvents] = useState<Event[] | null>(null);
 
-      if (data) {
-        setEvents(data as Event[]); // Type assertion for data as an array of Event
-        setFetchError(null);
-      }
-    };
+// useEffect is used to perform side effects in a functional component
+useEffect(() => {
+  // This function fetches events from a Supabase database
+  const fetchEvents = async () => {
+    // Use the Supabase 'from' method to select data from the 'event' table
+    const { data, error } = await supabase.from("event").select();
 
-    fetchEvents();
-  }, []);
+    // Check if there was an error during the fetch
+    if (error) {
+      // Set the 'fetchError' state to a message
+      setFetchError("Could not fetch the data");
+
+      // Set the 'events' state to null to clear any previous data
+      setEvents(null);
+
+      // Log the error to the console
+      console.log(error);
+    }
+
+    // Check if data was successfully fetched
+    if (data) {
+      // Set the 'events' state to the fetched data, assuming it's an array of 'Event'
+      setEvents(data as Event[]); // Type assertion for data as an array of Event
+
+      // Clear the 'fetchError' state since the fetch was successful
+      setFetchError(null);
+    }
+  };
+
+  // Call the fetchEvents function when the component is mounted (empty dependency array)
+  fetchEvents();
+}, []); // Empty dependency array to run this effect only once on component mount
+
 
   return (
     <div>
@@ -160,7 +179,7 @@ export default function Page(){
           <div className="flex gap-4 text-3xl font-semibold">
           <FaClock /> Events Panel
           </div>
-          <Link href='/admin'><button className="bg-blue-500 p-2 rounded-lg">Go Admin Panel</button></Link>
+          <Link href='/admin'><button className="bg-gradient-to-br from-blue-500 to-blue-900 p-2 rounded-lg shadow-lg">Go Admin Panel</button></Link>
         </div>
         <Line />
       </div>
@@ -168,14 +187,16 @@ export default function Page(){
 
     {events ? (
       <div className="container mx-auto py-8 mb-16">
-        <div className="flex items-center gap-x-3 my-6">
-          <h2 className="text-lg font-medium text-gray-800 dark:text-white">
+        <div className="flex items-center justify-between my-6">
+          <div className="flex items-center gap-x-3">
+          <div className="text-lg font-medium text-gray-800 dark:text-white">
             Events
-          </h2>
-
-          <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
+          </div>
+          <div className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
             {events.length} events total
-          </span>
+          </div>
+          </div>
+          <Link href='/admin/event/create'><button className="bg-gradient-to-br from-blue-500 to-blue-900 px-3 py-2 rounded-lg text-md shadow-lg">Create Event</button></Link>
         </div>
         <EventTable events={events} />
         <div className="flex items-center justify-between mt-6">
