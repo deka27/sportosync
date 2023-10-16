@@ -193,7 +193,7 @@ export default function Page() {
             <div className="text-2xl mt-10 mb-20">Analytics</div>
             <div className="flex gap-x-20 gap-y-20 flex-col md:flex-row">
               <div className="flex flex-col gap-6">
-                <BarChart width={300} height={300} data={league}>
+                <BarChart width={350} height={300} data={league}>
                   <XAxis dataKey="team" tick={{ display: "none" }}>
                     <Label
                       value="team"
@@ -238,7 +238,7 @@ export default function Page() {
                 <div className="mx-auto bg-white text-black rounded-full px-4 py-1 w-fit">Team vs Score</div>
               </div>
               <div className="flex flex-col gap-6">
-                <BarChart width={300} height={300} data={league}>
+                <BarChart width={350} height={300} data={league}>
                   <XAxis dataKey="team" tick={{ display: "none" }}>
                     <Label
                       value="team"
@@ -283,7 +283,7 @@ export default function Page() {
                 <div className="mx-auto bg-white text-black rounded-full px-4 py-1 w-fit">Team vs Match</div>
               </div>
               <div className="flex flex-col gap-6">
-                <BarChart width={300} height={300} data={league}>
+                <BarChart width={350} height={300} data={league}>
                   <XAxis dataKey="team" tick={{ display: "none" }}>
                     <Label
                       value="team"
