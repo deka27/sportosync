@@ -16,16 +16,16 @@ function PlayerRow({id,player_name,village,team}: Player) {
   return (
     <tr>
 
-      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+      <td className="px-4 py-4 text-sm text-gray-300 whitespace-nowrap">
         {id}
       </td>
-      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+      <td className="px-4 py-4 text-sm text-gray-300 whitespace-nowrap">
         {player_name}
       </td>
-      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+      <td className="px-4 py-4 text-sm text-gray-300 whitespace-nowrap">
         {village}
       </td>
-      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+      <td className="px-4 py-4 text-sm text-gray-300 whitespace-nowrap">
         {team}
       </td>
      
@@ -70,34 +70,124 @@ function PlayerRow({id,player_name,village,team}: Player) {
 }
 
 function PlayerTable({ players }: { players: Player[] }) {
+
+  const itemsPerPage = 10;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const playersToDisplay = players.slice(startIndex, endIndex);
+
+  const totalPages = Math.ceil(players.length / itemsPerPage);
+
+  const handlePageChange = (page:any) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
+
+  const visiblePages = 5; // Adjust this number to control how many pages you want to display
+  const pageNumbers = [];
+
+  for (let i = Math.max(1, currentPage - Math.floor(visiblePages / 2)); i <= Math.min(totalPages, currentPage + Math.floor(visiblePages / 2)); i++) {
+    pageNumbers.push(i);
+  }
+
   return (
-    <div className="overflow-x-auto bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-      <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+    <div>
+    <div className="overflow-x-auto bg-gray-800 shadow sm:rounded-lg">
+      <table className="min-w-full divide-y divide-gray-700">
         <thead>
           <tr>
-            <th className="px-4 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+            <th className="px-4 py-3 bg-gray-700 text-left text-xs text-gray-300 uppercase tracking-wider">
               ID
             </th>
-            <th className="px-4 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+            <th className="px-4 py-3 bg-gray-700 text-left text-xs text-gray-300 uppercase tracking-wider">
               Name
             </th>
-            <th className="px-4 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+            <th className="px-4 py-3 bg-gray-700 text-left text-xs text-gray-300 uppercase tracking-wider">
               Village
             </th>
-            <th className="px-4 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+            <th className="px-4 py-3 bg-gray-700 text-left text-xs text-gray-300 uppercase tracking-wider">
               Team
             </th>           
             
-            <th className="px-4 py-3 bg-gray-50 dark:bg-gray-700"></th>
+            <th className="px-4 py-3 bg-gray-700"></th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-          {players.map((player) => (
+        <tbody className="divide-y divide-gray-700">
+          {playersToDisplay.map((player) => (
             <PlayerRow key={player.id} {...player} />
           ))}
         </tbody>
       </table>
     </div>
+    {/* Pagination controls */}
+    <div className="flex justify-between my-4">
+
+    <div className="flex items-center text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
+   
+    <button
+      onClick={() => handlePageChange(currentPage - 1)}
+      disabled={currentPage <= 1}
+      className="flex flex-row gap-2 w-full px-5 py-2"
+    >
+       <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          className="w-5 h-5 rtl:-scale-x-100"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
+          />
+        </svg>
+      Previous
+    </button>
+    </div>
+
+    <div className="items-center hidden lg:flex gap-x-3">
+          {pageNumbers.map((pageNumber) => (
+            <button
+              key={pageNumber}
+              onClick={() => handlePageChange(pageNumber)}
+              className={currentPage === pageNumber ? 'px-2 py-1 text-sm text-blue-500 rounded-md dark:bg-gray-800 bg-blue-100/60' : 'px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100'}
+            >
+              {pageNumber}
+            </button>
+          ))}
+      </div>
+
+    <div className="flex items-center  text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800"> 
+    <button
+      onClick={() => handlePageChange(currentPage + 1)}
+      disabled={endIndex >= players.length}
+      className="flex flex-row gap-2 w-full px-5 py-2"
+    >
+      Next
+      <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          className="w-5 h-5 rtl:-scale-x-100"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+          />
+        </svg>
+    </button>
+    
+    </div>
+  </div>
+  </div>
   );
 }
 
@@ -131,7 +221,7 @@ export default function Page(){
           <div className="flex gap-4 text-3xl font-semibold">
           <MdSportsMartialArts /> Players Panel
           </div>
-          <Link href='/admin'><button className="bg-blue-500 p-2 rounded-lg">Go Admin Panel</button></Link>
+          <Link href='/admin'><button className="bg-gradient-to-br from-blue-500 to-blue-900 p-2 rounded-lg">Go Admin Panel</button></Link>
         </div>
         <Line />
       </div>
@@ -149,96 +239,6 @@ export default function Page(){
           </span>
         </div>
         <PlayerTable players={players} />
-        <div className="flex items-center justify-between mt-6">
-          <a
-            href="#"
-            className="flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              className="w-5 h-5 rtl:-scale-x-100"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
-              />
-            </svg>
-
-            <span>previous</span>
-          </a>
-
-          <div className="items-center hidden lg:flex gap-x-3">
-            <a
-              href="#"
-              className="px-2 py-1 text-sm text-blue-500 rounded-md dark:bg-gray-800 bg-blue-100/60"
-            >
-              1
-            </a>
-            <a
-              href="#"
-              className="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
-            >
-              2
-            </a>
-            <a
-              href="#"
-              className="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
-            >
-              3
-            </a>
-            <a
-              href="#"
-              className="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
-            >
-              ...
-            </a>
-            <a
-              href="#"
-              className="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
-            >
-              12
-            </a>
-            <a
-              href="#"
-              className="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
-            >
-              13
-            </a>
-            <a
-              href="#"
-              className="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
-            >
-              14
-            </a>
-          </div>
-
-          <a
-            href="#"
-            className="flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800"
-          >
-            <span>Next</span>
-
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              className="w-5 h-5 rtl:-scale-x-100"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-              />
-            </svg>
-          </a>
-        </div>
       </div>
       
     ):(

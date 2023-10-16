@@ -109,12 +109,12 @@ export default function Footer() {
     <footer className="bg-gradient-to-b from-[#000423] to-[black] lg:grid lg:grid-cols-5">
       <div className="relative block h-32 lg:col-span-2 lg:h-full">
         <Image
-          src="https://source.unsplash.com/3_JwPJwq6CI"
+          src="https://source.unsplash.com/CTMW4jxNEQg"
           alt=""
           width={1500}
           height={1500}
-          className="absolute inset-0 h-full w-full object-cover"
-        />
+          className="absolute inset-0 h-full w-full object-cover flip-horizontal transform"
+        ></Image>
       </div>
 
       <div className="px-4 py-16 sm:px-6 lg:col-span-3 lg:px-8">

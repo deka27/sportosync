@@ -16,14 +16,14 @@ export interface Database {
           event_name: string
           id: number
           location: string | null
-          refree: number | null
-          score_A: number | null
-          score_B: number | null
+          score_A: number
+          score_B: number
           sport: string
           status: string
           team_A: string
           team_B: string
           time: string | null
+          winner: string | null
         }
         Insert: {
           created_at?: string
@@ -31,14 +31,14 @@ export interface Database {
           event_name: string
           id?: number
           location?: string | null
-          refree?: number | null
-          score_A?: number | null
-          score_B?: number | null
+          score_A?: number
+          score_B?: number
           sport: string
           status: string
           team_A: string
           team_B: string
           time?: string | null
+          winner?: string | null
         }
         Update: {
           created_at?: string
@@ -46,22 +46,16 @@ export interface Database {
           event_name?: string
           id?: number
           location?: string | null
-          refree?: number | null
-          score_A?: number | null
-          score_B?: number | null
+          score_A?: number
+          score_B?: number
           sport?: string
           status?: string
           team_A?: string
           team_B?: string
           time?: string | null
+          winner?: string | null
         }
         Relationships: [
-          {
-            foreignKeyName: "event_refree_fkey"
-            columns: ["refree"]
-            referencedRelation: "player"
-            referencedColumns: ["id"]
-          },
           {
             foreignKeyName: "event_sport_fkey"
             columns: ["sport"]
@@ -85,6 +79,40 @@ export interface Database {
             columns: ["team_B"]
             referencedRelation: "team"
             referencedColumns: ["team_name"]
+          },
+          {
+            foreignKeyName: "event_winner_fkey"
+            columns: ["winner"]
+            referencedRelation: "team"
+            referencedColumns: ["team_name"]
+          }
+        ]
+      }
+      overall: {
+        Row: {
+          created_at: string
+          id: number
+          score: number
+          team: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          score?: number
+          team?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          score?: number
+          team?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "overall_team_fkey"
+            columns: ["team"]
+            referencedRelation: "team"
+            referencedColumns: ["team_name"]
           }
         ]
       }
@@ -93,6 +121,7 @@ export interface Database {
           created_at: string
           id: number
           player_name: string
+          role: string | null
           team: string | null
           village: string | null
         }
@@ -100,6 +129,7 @@ export interface Database {
           created_at?: string
           id?: number
           player_name: string
+          role?: string | null
           team?: string | null
           village?: string | null
         }
@@ -107,6 +137,7 @@ export interface Database {
           created_at?: string
           id?: number
           player_name?: string
+          role?: string | null
           team?: string | null
           village?: string | null
         }

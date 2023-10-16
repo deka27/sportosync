@@ -1,18 +1,19 @@
 import React from "react";
 import Link from "next/link";
 import { MdSportsBasketball } from "react-icons/md";
-import { AiOutlineTeam } from "react-icons/ai";
+import { AiOutlineTeam, AiFillControl } from "react-icons/ai";
 import { BiSolidUser } from "react-icons/bi";
 import { SiPremierleague } from "react-icons/si";
 import { MdAdminPanelSettings } from "react-icons/md";
-import {PiPowerFill} from "react-icons/pi"
+import { PiPowerFill } from "react-icons/pi"
 import Line from "../(components)/Line";
 
 const links = [
+  { href: "/admin/control", icon: <AiFillControl />, text: "Control Centre" },
   { href: "/admin/event", icon: <MdSportsBasketball />, text: "Events" },
   { href: "/admin/team", icon: <AiOutlineTeam />, text: "Teams" },
   { href: "/admin/player", icon: <BiSolidUser />, text: "Players" },
-  { href: "/admin/league", icon: <SiPremierleague />, text: "League" },
+  { href: "/admin/league", icon: <SiPremierleague />, text: "League" },  
 ];
 
 export default function Page() {

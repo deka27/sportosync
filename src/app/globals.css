@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 4, 35;
+    --background-end-rgb: 0, 0, 0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -41,4 +41,30 @@ body {
 
 ::-webkit-scrollbar {
 	display: none;
+}
+
+select {
+  -webkit-appearance:none;
+  -moz-appearance:none;
+}
+
+.clip-path-polygon-tl {
+  clip-path: polygon(100% 0, 0 0, 0 100%);
+}
+
+.clip-path-polygon-tr {
+  clip-path: polygon(100% 0, 100% 100%, 0 0);
+}
+
+.clip-path-polygon-bl {
+  clip-path: polygon(0 100%, 100% 100%, 0 0);
+
+}
+
+.clip-path-polygon-br {
+  clip-path: polygon(0 100%, 100% 100%, 100% 0);
+}
+
+.flip-horizontal {
+  --transform-scale-x: -1;
 }

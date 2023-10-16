@@ -16,27 +16,27 @@ export const navLinks = [
   {
     id: "live",
     title: "Live",
-    url: "/",
+    url: "/live",
   },
   {
     id: "allmatches",
-    title: "Games",
-    url: "/",
+    title: "All Matches",
+    url: "/matches",
+  },
+  {
+    id: "league",
+    title: "League",
+    url: "/league",
+  },
+  {
+    id: "teams",
+    title: "Teams",
+    url: "/team",
   },
   {
     id: "admin",
     title: "Admin",
     url: "/admin",
-  },
-  {
-    id: "league",
-    title: "League",
-    url: "/",
-  },
-  {
-    id: "teams",
-    title: "Teams",
-    url: "/",
   },
 ];
 
