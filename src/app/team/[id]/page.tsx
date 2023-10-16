@@ -159,7 +159,7 @@ const village: { village: string; count: number }[] = countPlayersByVillage();
               {players.length} members total
             </div>
             <div className="mt-16 mx-auto hidden justify-center items-center lg:flex">
-              <BarChart width={1600} height={600} data={village}>
+              <BarChart width={1200} height={600} data={village}>
                 <XAxis dataKey="village" tick={{ display: "none" }}>
                   <Label
                     value="village names"
