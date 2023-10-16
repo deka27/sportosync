@@ -13,13 +13,10 @@ export default function Hero() {
           SportoSync
         </div>
         <div className="text-xl text-center p-4">Welcome to your Ultimate Sports Hub!</div>
-        <div className="text-lg text-center p-4 md:w-2/3 tracking-tighter">
+        <div className="text-sm 2xl:text-lg text-center p-4 md:w-2/3 tracking-tighter">
           Your All-in-One Sports Hub. We&apos;re your dedicated sports  
           companion, delivering real-time scores, comprehensive team statistics,
-          and a vibrant community for passionate fans. Our mission is to make
-          your sports experience unforgettable, from tracking live matches to
-          connecting with fellow enthusiasts. Welcome to the ultimate sports
-          journey with SportSync!
+          and a vibrant community for passionate fans.
         </div>
       </div>
       <div className="h-full">
