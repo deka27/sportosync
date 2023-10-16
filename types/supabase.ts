@@ -88,28 +88,40 @@ export interface Database {
           }
         ]
       }
-      overall: {
+      league: {
         Row: {
           created_at: string
+          draw: number
+          games: number
           id: number
-          score: number
+          loss: number
+          points: number
           team: string | null
+          win: number
         }
         Insert: {
           created_at?: string
+          draw?: number
+          games?: number
           id?: number
-          score?: number
+          loss?: number
+          points?: number
           team?: string | null
+          win?: number
         }
         Update: {
           created_at?: string
+          draw?: number
+          games?: number
           id?: number
-          score?: number
+          loss?: number
+          points?: number
           team?: string | null
+          win?: number
         }
         Relationships: [
           {
-            foreignKeyName: "overall_team_fkey"
+            foreignKeyName: "league_team_fkey"
             columns: ["team"]
             referencedRelation: "team"
             referencedColumns: ["team_name"]

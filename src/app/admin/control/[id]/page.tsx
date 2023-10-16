@@ -126,7 +126,7 @@ export default function Event({ params }: any) {
         ></Image>
         </div>
 
-        <div className="p-16 w-full lg:w-8/12 mx-auto container">
+        <div className="p-8 md:p-12 w-full lg:w-8/12 mx-auto container">
 
           <div className="flex flex-col gap-6">
             <div className="flex lg:justify-between items-center my-2 flex-col lg:flex-row gap-6 bg-gradient-to-br from-blue-500 to-blue-900 p-6 rounded-lg">
@@ -150,8 +150,8 @@ export default function Event({ params }: any) {
               className="flex flex-col my-6"
             >
               <div className="flex w-full justify-center items-center">
-                <div className="flex flex-col justify-center items-center gap-2 w-1/3">
-                  <div className="text-xl lg:text-4xl font-semibold my-6">
+                <div className="flex flex-col justify-center items-center gap-5 w-1/3 h-full">
+                  <div className="text-sm md:text-xl lg:text-4xl font-semibold my-6">
                     {info.team_A}
                   </div>
                   <div className="w-1/2 h-auto flex justify-center items-center">
@@ -175,8 +175,29 @@ export default function Event({ params }: any) {
                           <RiSwordFill/>
                           VS
                 </div>
-                <div className="flex flex-col justify-center items-center gap-2 w-1/3">
-                  <div className="text-xl lg:text-4xl font-semibold my-6">
+                <div className="flex flex-col justify-center items-center gap-5 w-1/3 h-full">
+                  <div className="text-sm md:text-xl lg:text-4xl font-semibold my-6">
+                    {info.team_B}
+                  </div>
+                  <div className="w-1/2 h-auto flex justify-center items-center">
+                    <Image
+                      src={images[info.team_B]}
+                      alt={info.team_B}
+                      width={200}
+                      height={200}
+                      className="bg-white rounded-full p-1 shadow-lg"
+                    ></Image>
+                  </div>
+                  <input
+                    type="number"
+                    id="score_B"
+                    value={score_B}
+                    onChange={(e) => setScore_A(e.target.value)}
+                    className="bg-transparent text-white text-center text-4xl lg:text-5xl max-w-full font-bold my-6 mx-auto"
+                  />
+                </div>
+                {/* <div className="flex flex-col justify-center items-center gap-5 w-1/3 h-full">
+                  <div className="text-sm md:text-xl lg:text-4xl font-semibold my-6">
                     {info.team_B}
                   </div>
                   <div className="w-1/2 h-auto  flex justify-center items-center mt-3">
@@ -195,7 +216,7 @@ export default function Event({ params }: any) {
                     onChange={(e) => setScore_B(e.target.value)}
                     className="bg-transparent text-white text-center text-4xl lg:text-5xl max-w-full font-bold my-6"
                   />
-                </div>
+                </div> */}
               </div>
               <div className="flex flex-col justify-between my-6">
               <div className="flex gap-3 justify-center items-center">

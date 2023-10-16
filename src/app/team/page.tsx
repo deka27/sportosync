@@ -7,6 +7,7 @@ import { SiRiotgames } from "react-icons/si";
 import { RiSwordFill } from "react-icons/ri";
 import FadeLoader from "react-spinners/FadeLoader";
 import Link from "next/link";
+import graph from "../../../public/images/graph.jpg"
 
 import {
   BarChart,
@@ -232,7 +233,7 @@ export default function Page() {
         </div>
       </div>
       {villageData ? (
-        <div className="p-2 lg:p-20 flex flex-col gap-6 h-[2000px] lg:h-screen">
+        <div className="p-2 lg:p-20 flex flex-col gap-6 h-[2000px] lg:h-fit">
           <div className="text-3xl font-semibold text-center my-6">
             Analytics
           </div>
@@ -329,6 +330,13 @@ export default function Page() {
                 </Bar>
               </BarChart>
             </div>
+            </div>
+            <div className="p-2 rounded-lg hidden lg:flex ">
+              <Image
+              src={graph}
+              alt="graph"
+              className="rounded-lg">
+              </Image>
             </div>
           </div>
         </div>
