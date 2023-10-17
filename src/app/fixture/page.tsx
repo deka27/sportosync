@@ -6,7 +6,7 @@ import { Database } from "../../../types/supabase";
 import Image from "next/image";
 import Line from "../(components)/Line";
 
-type Fixture = Database["public"]["Tables"]["fixture"]["Row"];
+type Fixture = Database["public"]["Tables"]["fix"]["Row"];
 
 interface Images {
   [teamName: string]: string; // Maps a team name (string) to an image source (string)
@@ -21,7 +21,7 @@ const images: Images = {
   Admin: "/images/img6.gif",
 };
 
-function FixtureRow({ id, match_num, team_A, team_B }: Fixture) {
+function FixtureRow({ id, sort, team_A, team_B }: Fixture) {
   // Check if team_name is not null, and if it's a valid key in images
   const teamImageSrcA = team_A && images[team_A] ? images[team_A] : "";
   const teamImageSrcB = team_B && images[team_B] ? images[team_B] : "";
@@ -60,7 +60,7 @@ function FixtureRow({ id, match_num, team_A, team_B }: Fixture) {
   );
 }
 
-function FixtureTable({ fixture }: { fixture: Fixture[] }) {
+function FixtureTable({ fix }: { fix: Fixture[] }) {
   return (
     <div className="overflow-x-auto bg-gray-800 shadow sm:rounded-lg">
       <table className="min-w-full divide-y divide-gray-700">
@@ -84,8 +84,8 @@ function FixtureTable({ fixture }: { fixture: Fixture[] }) {
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-700">
-          {fixture.map((fixture) => (
-            <FixtureRow key={fixture.id} {...fixture} />
+          {fix.map((fix) => (
+            <FixtureRow key={fix.id} {...fix} />
           ))}
         </tbody>
       </table>
@@ -104,7 +104,7 @@ export default function Page() {
   useEffect(() => {
     const fetchFoot = async () => {
       const { data, error } = await supabase
-        .from("fixture")
+        .from("fix")
         .select()
         .eq("sport", "⚽ Football");
       if (error) {
@@ -122,7 +122,7 @@ export default function Page() {
   useEffect(() => {
     const fetchMvolley = async () => {
       const { data, error } = await supabase
-        .from("fixture")
+        .from("fix")
         .select()
         .eq("sport", "🏐 Volleyball")
         .eq("gender", "Men");
@@ -141,7 +141,7 @@ export default function Page() {
   useEffect(() => {
     const fetchFvolley = async () => {
       const { data, error } = await supabase
-        .from("fixture")
+        .from("fix")
         .select()
         .eq("sport", "🏐 Volleyball")
         .eq("gender", "Women");
@@ -160,7 +160,7 @@ export default function Page() {
   useEffect(() => {
     const fetchMbasket = async () => {
       const { data, error } = await supabase
-        .from("fixture")
+        .from("fix")
         .select()
         .eq("sport", "🏀 Basketball")
         .eq("gender", "Men");
@@ -179,7 +179,7 @@ export default function Page() {
   useEffect(() => {
     const fetchFbasket = async () => {
       const { data, error } = await supabase
-        .from("fixture")
+        .from("fix")
         .select()
         .eq("sport", "🏀 Basketball")
         .eq("gender", "Women");
@@ -208,23 +208,23 @@ export default function Page() {
                <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-20 mb-20 px-10">
                     <div className="flex flex-col justify-center items-center gap-6">
                          <div className="bg-white rounded-full text-black w-fit py-2 px-6">Men&apos;s Football</div>
-                         <div><FixtureTable fixture={foot}/></div>
+                         <div><FixtureTable fix={foot}/></div>
                     </div>
                     <div className="flex flex-col justify-center items-center gap-6">
                          <div className="bg-white rounded-full text-black w-fit py-2 px-6">Men&apos;s Volleyball</div>
-                         <div><FixtureTable fixture={mvolley}/></div>
+                         <div><FixtureTable fix={mvolley}/></div>
                     </div>
                     <div className="flex flex-col justify-center items-center gap-6">
                          <div className="bg-white rounded-full text-black w-fit py-2 px-6">Women&apos;s Volleyball</div>
-                         <div><FixtureTable fixture={fvolley}/></div>
+                         <div><FixtureTable fix={fvolley}/></div>
+                    </div>
+                    <div className="flex flex-col justify-center items-center gap-6">
+                         <div className="bg-white rounded-full text-black w-fit py-2 px-6">Men&apos;s Basketball</div>
+                         <div><FixtureTable fix={mbasket}/></div>
                     </div>
                     <div className="flex flex-col justify-center items-center gap-6">
                          <div className="bg-white rounded-full text-black w-fit py-2 px-6">Women&apos;s Basketball</div>
-                         <div><FixtureTable fixture={mbasket}/></div>
-                    </div>
-                    <div className="flex flex-col justify-center items-center gap-6">
-                         <div className="bg-white rounded-full text-black w-fit py-2 px-6">Women&apos;s Basketball</div>
-                         <div><FixtureTable fixture={fbasket}/></div>
+                         <div><FixtureTable fix={fbasket}/></div>
                     </div>
                </div>
           )}

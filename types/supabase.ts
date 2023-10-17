@@ -88,49 +88,49 @@ export interface Database {
           }
         ]
       }
-      fixture: {
+      fix: {
         Row: {
           created_at: string
-          gender: string
+          gender: string | null
           id: number
-          match_num: string
+          sort: number | null
           sport: string | null
           team_A: string | null
           team_B: string | null
         }
         Insert: {
           created_at?: string
-          gender: string
+          gender?: string | null
           id?: number
-          match_num: string
+          sort?: number | null
           sport?: string | null
           team_A?: string | null
           team_B?: string | null
         }
         Update: {
           created_at?: string
-          gender?: string
+          gender?: string | null
           id?: number
-          match_num?: string
+          sort?: number | null
           sport?: string | null
           team_A?: string | null
           team_B?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "fixture_sport_fkey"
+            foreignKeyName: "fix_sport_fkey"
             columns: ["sport"]
             referencedRelation: "sport"
             referencedColumns: ["sport_name"]
           },
           {
-            foreignKeyName: "fixture_team_A_fkey"
+            foreignKeyName: "fix_team_A_fkey"
             columns: ["team_A"]
             referencedRelation: "team"
             referencedColumns: ["team_name"]
           },
           {
-            foreignKeyName: "fixture_team_B_fkey"
+            foreignKeyName: "fix_team_B_fkey"
             columns: ["team_B"]
             referencedRelation: "team"
             referencedColumns: ["team_name"]
