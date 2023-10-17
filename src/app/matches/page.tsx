@@ -3,10 +3,18 @@ import Image from "next/image";
 import supabase from "@/database/supabaseClient";
 import { useEffect, useState } from "react";
 import { Database } from "../../../types/supabase";
-import { GiBasketballBall,GiChessQueen,GiMuscleUp,GiRopeCoil,GiTwoCoins,GiVolleyballBall } from "react-icons/gi";
+import {
+  GiBasketballBall,
+  GiChessQueen,
+  GiMuscleUp,
+  GiRopeCoil,
+  GiTwoCoins,
+  GiVolleyballBall,
+} from "react-icons/gi";
 import { IoMdFootball } from "react-icons/io";
 import FadeLoader from "react-spinners/FadeLoader";
 import { RiSwordFill } from "react-icons/ri";
+import { FaCrown } from "react-icons/fa";
 
 interface Images {
   [teamName: string]: string; // Maps a team name (string) to an image source (string)
@@ -14,7 +22,7 @@ interface Images {
 
 type Event = Database["public"]["Tables"]["event"]["Row"];
 
-async function fetchEventsBySport(setter:any, sport:string) {
+async function fetchEventsBySport(setter: any, sport: string) {
   const { data, error } = await supabase
     .from("event")
     .select()
@@ -37,7 +45,6 @@ async function fetchEventsBySport(setter:any, sport:string) {
 }
 
 export default function Page() {
-  
   const [fetchError, setFetchError] = useState<string | null>(null);
   const [basketball, setBasketball] = useState<Event[] | null>(null);
   const [volleyball, setVolleyball] = useState<Event[] | null>(null);
@@ -50,11 +57,11 @@ export default function Page() {
   useEffect(() => {
     fetchEventsBySport(setBasketball, "🏀 Basketball");
   }, []);
-  
+
   useEffect(() => {
     fetchEventsBySport(setVolleyball, "🏐 Volleyball");
   }, []);
-  
+
   useEffect(() => {
     fetchEventsBySport(setFootball, "⚽ Football");
   }, []);
@@ -74,7 +81,6 @@ export default function Page() {
   useEffect(() => {
     fetchEventsBySport(setCarom, "⭕ Carrom");
   }, []);
-  
 
   const images: Images = {
     Houdu: "/images/img1.png",
@@ -85,7 +91,6 @@ export default function Page() {
 
   return (
     <div className="container my-16 px-6 mx-auto flex flex-col gap-10">
-
       <div className="text-4xl font-bold">All Matches</div>
 
       <div className="Football">
@@ -102,8 +107,10 @@ export default function Page() {
               {football.map((event) => (
                 <div key={event.id} className="mt-4">
                   <div className="bg-gradient-to-tr relative from-blue-300 via-blue-600 to-blue-900 p-14 flex flex-col justify-center items-center gap-2 rounded-xl shadow-lg">
-                  <div className="bg-white w-[35px] h-[35px] top-0 left-0 absolute m-2 rounded-tl-lg clip-path-polygon-tl"></div>
-                  <div className="bg-white w-[35px] h-[35px] top-0 right-0 absolute m-2 rounded-lg text-black flex justify-center items-center text-xs">M{event.id}</div>
+                    <div className="bg-white w-[35px] h-[35px] top-0 left-0 absolute m-2 rounded-tl-lg clip-path-polygon-tl"></div>
+                    <div className="bg-white w-[35px] h-[35px] top-0 right-0 absolute m-2 rounded-lg text-black flex justify-center items-center text-xs">
+                      M{event.id}
+                    </div>
                     <div className="text-xl">{event.sport}</div>
                     <div className="bg-white text-black py-1 px-3 my-2 rounded-full">
                       {event.event_name}
@@ -136,9 +143,9 @@ export default function Page() {
                         </div>
                       </div>
                       <div className="flex flex-col gap-2 justify-center items-center p-2 text-3xl font-semibold">
-                          <RiSwordFill/>
-                          VS
-                        </div>
+                        <RiSwordFill />
+                        VS
+                      </div>
                       <div className="flex flex-col  justify-center items-center gap-2 mt-3">
                         <div className="text-sm md:text-md lg:text-lg font-semibold">
                           {event.team_B}
@@ -157,6 +164,7 @@ export default function Page() {
                         </div>
                       </div>
                     </div>
+
                     <div className="bg-white w-[35px] h-[35px] bottom-0 right-0 absolute m-2 rounded-br-lg clip-path-polygon-br"></div>
                   </div>
                   <div className="py-4">{event.status}</div>
@@ -187,8 +195,10 @@ export default function Page() {
               {basketball.map((event) => (
                 <div key={event.id} className="mt-4">
                   <div className="bg-gradient-to-tr from-blue-300 via-blue-600 to-blue-900 relative p-14 flex flex-col justify-center items-center gap-2 rounded-xl shadow-lg">
-                  <div className="bg-white w-[35px] h-[35px] top-0 left-0 absolute m-2 rounded-tl-lg clip-path-polygon-tl"></div>
-                  <div className="bg-white w-[35px] h-[35px] top-0 right-0 absolute m-2 rounded-lg text-black flex justify-center items-center text-xs">M{event.id}</div>
+                    <div className="bg-white w-[35px] h-[35px] top-0 left-0 absolute m-2 rounded-tl-lg clip-path-polygon-tl"></div>
+                    <div className="bg-white w-[35px] h-[35px] top-0 right-0 absolute m-2 rounded-lg text-black flex justify-center items-center text-xs">
+                      M{event.id}
+                    </div>
                     <div className="text-xl">{event.sport}</div>
                     <div className="bg-white text-black py-1 px-3 my-2 rounded-full">
                       {event.event_name}
@@ -221,9 +231,9 @@ export default function Page() {
                         </div>
                       </div>
                       <div className="flex flex-col gap-2 justify-center items-center p-2 text-3xl font-semibold">
-                          <RiSwordFill/>
-                          VS
-                        </div>
+                        <RiSwordFill />
+                        VS
+                      </div>
                       <div className="flex flex-col  justify-center items-center gap-2 mt-3">
                         <div className="text-sm md:text-md lg:text-lg font-semibold">
                           {event.team_B}
@@ -242,13 +252,23 @@ export default function Page() {
                         </div>
                       </div>
                     </div>
+                    {event.winner && (
+                      <div className="flex flex-col justify-center items-center gap-2">
+                        <div>Winner</div>
+                        <div className="flex flex-row justify-center items-center gap-2 bg-white rounded-lg px-3 py-1">
+                          <div className="text-amber-400"><FaCrown /></div>
+                          <div className="text-black">{event.winner}</div>
+                          <div className="text-amber-400"><FaCrown /></div>                          
+                        </div>
+                      </div>
+                    )}
                     <div className="bg-white w-[35px] h-[35px] bottom-0 right-0 absolute m-2 rounded-br-lg clip-path-polygon-br"></div>
                   </div>
                   <div className="py-4">{event.status}</div>
                 </div>
               ))}
             </div>
-          ): (
+          ) : (
             <div className="container mx-auto py-8 text-center flex flex-col gap-8 my-16">
               <div className="flex justify-center items-center">
                 <FadeLoader color="#3689d6" />
@@ -257,7 +277,7 @@ export default function Page() {
             </div>
           )}
         </div>
-      </div> 
+      </div>
       <div className="Volleyball">
         <div className="bg-white flex w-fit py-2 px-6 my-6 rounded-full gap-2">
           <div className="text-blue-500 flex items-center justify-center">
@@ -272,8 +292,10 @@ export default function Page() {
               {volleyball.map((event) => (
                 <div key={event.id} className="mt-4">
                   <div className="bg-gradient-to-tr from-blue-300 via-blue-600 to-blue-900 relative p-14 flex flex-col justify-center items-center gap-2 rounded-xl shadow-lg">
-                  <div className="bg-white w-[35px] h-[35px] top-0 left-0 absolute m-2 rounded-tl-lg clip-path-polygon-tl"></div>
-                  <div className="bg-white w-[35px] h-[35px] top-0 right-0 absolute m-2 rounded-lg text-black flex justify-center items-center text-xs">M{event.id}</div>
+                    <div className="bg-white w-[35px] h-[35px] top-0 left-0 absolute m-2 rounded-tl-lg clip-path-polygon-tl"></div>
+                    <div className="bg-white w-[35px] h-[35px] top-0 right-0 absolute m-2 rounded-lg text-black flex justify-center items-center text-xs">
+                      M{event.id}
+                    </div>
                     <div className="text-xl">{event.sport}</div>
                     <div className="bg-white text-black py-1 px-3 my-2 rounded-full">
                       {event.event_name}
@@ -306,9 +328,9 @@ export default function Page() {
                         </div>
                       </div>
                       <div className="flex flex-col gap-2 justify-center items-center p-2 text-3xl font-semibold">
-                          <RiSwordFill/>
-                          VS
-                        </div>
+                        <RiSwordFill />
+                        VS
+                      </div>
                       <div className="flex flex-col  justify-center items-center gap-2 mt-3">
                         <div className="text-sm md:text-md lg:text-lg font-semibold">
                           {event.team_B}
@@ -357,8 +379,10 @@ export default function Page() {
               {tug.map((event) => (
                 <div key={event.id} className="mt-4">
                   <div className="bg-gradient-to-tr from-blue-300 via-blue-600 to-blue-900 relative p-14 flex flex-col justify-center items-center gap-2 rounded-xl shadow-lg">
-                  <div className="bg-white w-[35px] h-[35px] top-0 left-0 absolute m-2 rounded-tl-lg clip-path-polygon-tl"></div>
-                  <div className="bg-white w-[35px] h-[35px] top-0 right-0 absolute m-2 rounded-lg text-black flex justify-center items-center text-xs">M{event.id}</div>
+                    <div className="bg-white w-[35px] h-[35px] top-0 left-0 absolute m-2 rounded-tl-lg clip-path-polygon-tl"></div>
+                    <div className="bg-white w-[35px] h-[35px] top-0 right-0 absolute m-2 rounded-lg text-black flex justify-center items-center text-xs">
+                      M{event.id}
+                    </div>
                     <div className="text-xl">{event.sport}</div>
                     <div className="bg-white text-black py-1 px-3 my-2 rounded-full">
                       {event.event_name}
@@ -391,9 +415,9 @@ export default function Page() {
                         </div>
                       </div>
                       <div className="flex flex-col gap-2 justify-center items-center p-2 text-3xl font-semibold">
-                          <RiSwordFill/>
-                          VS
-                        </div>
+                        <RiSwordFill />
+                        VS
+                      </div>
                       <div className="flex flex-col  justify-center items-center gap-2 mt-3">
                         <div className="text-sm md:text-md lg:text-lg font-semibold">
                           {event.team_B}
@@ -442,8 +466,10 @@ export default function Page() {
               {arm.map((event) => (
                 <div key={event.id} className="mt-4">
                   <div className="bg-gradient-to-tr from-blue-300 via-blue-600 to-blue-900 relative p-14 flex flex-col justify-center items-center gap-2 rounded-xl shadow-lg">
-                  <div className="bg-white w-[35px] h-[35px] top-0 left-0 absolute m-2 rounded-tl-lg clip-path-polygon-tl"></div>
-                  <div className="bg-white w-[35px] h-[35px] top-0 right-0 absolute m-2 rounded-lg text-black flex justify-center items-center text-xs">M{event.id}</div>
+                    <div className="bg-white w-[35px] h-[35px] top-0 left-0 absolute m-2 rounded-tl-lg clip-path-polygon-tl"></div>
+                    <div className="bg-white w-[35px] h-[35px] top-0 right-0 absolute m-2 rounded-lg text-black flex justify-center items-center text-xs">
+                      M{event.id}
+                    </div>
                     <div className="text-xl">{event.sport}</div>
                     <div className="bg-white text-black py-1 px-3 my-2 rounded-full">
                       {event.event_name}
@@ -476,9 +502,9 @@ export default function Page() {
                         </div>
                       </div>
                       <div className="flex flex-col gap-2 justify-center items-center p-2 text-3xl font-semibold">
-                          <RiSwordFill/>
-                          VS
-                        </div>
+                        <RiSwordFill />
+                        VS
+                      </div>
                       <div className="flex flex-col  justify-center items-center gap-2 mt-3">
                         <div className="text-sm md:text-md lg:text-lg font-semibold">
                           {event.team_B}
@@ -527,8 +553,10 @@ export default function Page() {
               {chess.map((event) => (
                 <div key={event.id} className="mt-4">
                   <div className="bg-gradient-to-tr from-blue-300 via-blue-600 to-blue-900 relative p-14 flex flex-col justify-center items-center gap-2 rounded-xl shadow-lg">
-                  <div className="bg-white w-[35px] h-[35px] top-0 left-0 absolute m-2 rounded-tl-lg clip-path-polygon-tl"></div>
-                  <div className="bg-white w-[35px] h-[35px] top-0 right-0 absolute m-2 rounded-lg text-black flex justify-center items-center text-xs">M{event.id}</div>
+                    <div className="bg-white w-[35px] h-[35px] top-0 left-0 absolute m-2 rounded-tl-lg clip-path-polygon-tl"></div>
+                    <div className="bg-white w-[35px] h-[35px] top-0 right-0 absolute m-2 rounded-lg text-black flex justify-center items-center text-xs">
+                      M{event.id}
+                    </div>
                     <div className="text-xl">{event.sport}</div>
                     <div className="bg-white text-black py-1 px-3 my-2 rounded-full">
                       {event.event_name}
@@ -561,9 +589,9 @@ export default function Page() {
                         </div>
                       </div>
                       <div className="flex flex-col gap-2 justify-center items-center p-2 text-3xl font-semibold">
-                          <RiSwordFill/>
-                          VS
-                        </div>
+                        <RiSwordFill />
+                        VS
+                      </div>
                       <div className="flex flex-col  justify-center items-center gap-2 mt-3">
                         <div className="text-sm md:text-md lg:text-lg font-semibold">
                           {event.team_B}
@@ -612,8 +640,10 @@ export default function Page() {
               {carrom.map((event) => (
                 <div key={event.id} className="mt-4">
                   <div className="bg-gradient-to-tr from-blue-300 via-blue-600 to-blue-900 relative p-14 flex flex-col justify-center items-center gap-2 rounded-xl shadow-lg">
-                  <div className="bg-white w-[35px] h-[35px] top-0 left-0 absolute m-2 rounded-tl-lg clip-path-polygon-tl"></div>
-                  <div className="bg-white w-[35px] h-[35px] top-0 right-0 absolute m-2 rounded-lg text-black flex justify-center items-center text-xs">M{event.id}</div>
+                    <div className="bg-white w-[35px] h-[35px] top-0 left-0 absolute m-2 rounded-tl-lg clip-path-polygon-tl"></div>
+                    <div className="bg-white w-[35px] h-[35px] top-0 right-0 absolute m-2 rounded-lg text-black flex justify-center items-center text-xs">
+                      M{event.id}
+                    </div>
                     <div className="text-xl">{event.sport}</div>
                     <div className="bg-white text-black py-1 px-3 my-2 rounded-full">
                       {event.event_name}
@@ -646,9 +676,9 @@ export default function Page() {
                         </div>
                       </div>
                       <div className="flex flex-col gap-2 justify-center items-center p-2 text-3xl font-semibold">
-                          <RiSwordFill/>
-                          VS
-                        </div>
+                        <RiSwordFill />
+                        VS
+                      </div>
                       <div className="flex flex-col  justify-center items-center gap-2 mt-3">
                         <div className="text-sm md:text-md lg:text-lg font-semibold">
                           {event.team_B}
@@ -683,8 +713,6 @@ export default function Page() {
           )}
         </div>
       </div>
-      
-      
     </div>
   );
 }
