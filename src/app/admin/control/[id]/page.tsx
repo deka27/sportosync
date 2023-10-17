@@ -192,7 +192,7 @@ export default function Event({ params }: any) {
                     type="number"
                     id="score_B"
                     value={score_B}
-                    onChange={(e) => setScore_A(e.target.value)}
+                    onChange={(e) => setScore_B(e.target.value)}
                     className="bg-transparent text-white text-center text-4xl lg:text-5xl max-w-full font-bold my-6 mx-auto"
                   />
                 </div>

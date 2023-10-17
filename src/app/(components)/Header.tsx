@@ -24,15 +24,21 @@ export const navLinks = [
     url: "/matches",
   },
   {
+    id: "teams",
+    title: "Teams",
+    url: "/team",
+  },
+  {
     id: "league",
     title: "League",
     url: "/league",
   },
   {
-    id: "teams",
-    title: "Teams",
-    url: "/team",
+    id: "fixture",
+    title: "Fixture",
+    url: "/fixture",
   },
+  
   {
     id: "admin",
     title: "Admin",

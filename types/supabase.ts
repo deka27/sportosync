@@ -88,6 +88,55 @@ export interface Database {
           }
         ]
       }
+      fixture: {
+        Row: {
+          created_at: string
+          gender: string
+          id: number
+          match_num: string
+          sport: string | null
+          team_A: string | null
+          team_B: string | null
+        }
+        Insert: {
+          created_at?: string
+          gender: string
+          id?: number
+          match_num: string
+          sport?: string | null
+          team_A?: string | null
+          team_B?: string | null
+        }
+        Update: {
+          created_at?: string
+          gender?: string
+          id?: number
+          match_num?: string
+          sport?: string | null
+          team_A?: string | null
+          team_B?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fixture_sport_fkey"
+            columns: ["sport"]
+            referencedRelation: "sport"
+            referencedColumns: ["sport_name"]
+          },
+          {
+            foreignKeyName: "fixture_team_A_fkey"
+            columns: ["team_A"]
+            referencedRelation: "team"
+            referencedColumns: ["team_name"]
+          },
+          {
+            foreignKeyName: "fixture_team_B_fkey"
+            columns: ["team_B"]
+            referencedRelation: "team"
+            referencedColumns: ["team_name"]
+          }
+        ]
+      }
       league: {
         Row: {
           created_at: string
