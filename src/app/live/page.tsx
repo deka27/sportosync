@@ -98,6 +98,7 @@ export default function Page() {
                 <div key={event.id} className="mt-4 relative">
                   <div className="bg-gradient-to-tr relative from-blue-300 via-blue-600 to-blue-900 p-14 flex flex-col justify-center items-center gap-2 rounded-xl shadow-lg">
                     <div className="bg-white w-[35px] h-[35px] top-0 left-0 absolute m-2 rounded-tl-lg clip-path-polygon-tl"></div>
+                    <div className="bg-white w-[35px] h-[35px] top-0 right-0 absolute m-2 rounded-lg text-black flex justify-center items-center text-xs">M{event.id}</div>
                     <div className="text-xl">{event.sport}</div>
                     <div className="bg-white text-black py-1 px-3 my-2 rounded-full">
                       {event.event_name}
@@ -183,6 +184,7 @@ export default function Page() {
                 <div key={event.id} className="mt-4">
                   <div className="bg-gradient-to-tr from-blue-300 via-blue-600 to-blue-900 relative p-14 flex flex-col justify-center items-center gap-2 rounded-xl shadow-lg">
                   <div className="bg-white w-[35px] h-[35px] top-0 left-0 absolute m-2 rounded-tl-lg clip-path-polygon-tl"></div>
+                  <div className="bg-white w-[35px] h-[35px] top-0 right-0 absolute m-2 rounded-lg text-black flex justify-center items-center text-xs">M{event.id}</div>
 
                     <div className="text-xl">{event.sport}</div>
                     <div className="bg-white text-black py-1 px-3 my-2 rounded-full">
