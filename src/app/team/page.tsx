@@ -144,7 +144,11 @@ export default function Page() {
 
   return (
     <div className="container my-16 px-6 mx-auto flex flex-col gap-10">
-      <div className="text-4xl font-bold text-center">Teams Panel</div>
+      <div className="text-center">
+        <div className="text-4xl font-bold mb-4">Teams Panel</div>
+        <div>click on the team to know more</div>
+      </div>
+      
 
       <div className="player_teams">
         <div className="bg-white flex mx-auto w-fit py-2 px-6 my-6 rounded-full gap-2">

@@ -37,10 +37,10 @@ const FooterLinks = ({ title, links }:any) => (
 const Services = () => {
   const servicesLinks = [
     { href: '#', text: 'Home' },
-    { href: '#', text: 'About' },
-    { href: '#', text: 'Live Matches' },
-    { href: '#', text: 'All Matches' },
-    { href: '#', text: 'All Teams' },
+    { href: '/league', text: 'League' },
+    { href: '/live', text: 'Live Matches' },
+    { href: '/matches', text: 'All Matches' },
+    { href: '/team', text: 'All Teams' },
   ];
 
   return <FooterLinks title="Links" links={servicesLinks} />;
@@ -49,9 +49,9 @@ const Services = () => {
 // Company component
 const Company = () => {
   const companyLinks = [
-    { href: '#', text: 'Admin Panel' },
-    { href: '#', text: 'Meet the Team' },
-    { href: '#', text: 'Modubix' },
+    { href: '/admin', text: 'Admin Panel' },
+    { href: '/dev', text: 'Developer' },
+    { href: 'https://github.com/deka27', text: 'Modubix' },
   ];
 
   return <FooterLinks title="Extra" links={companyLinks} />;

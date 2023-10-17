@@ -13,7 +13,7 @@ const links = [
   { href: "/admin/event", icon: <MdSportsBasketball />, text: "Events" },
   { href: "/admin/team", icon: <AiOutlineTeam />, text: "Teams" },
   { href: "/admin/player", icon: <BiSolidUser />, text: "Players" },
-  { href: "/admin/league", icon: <SiPremierleague />, text: "League" },  
+  { href: "/league", icon: <SiPremierleague />, text: "League" },  
 ];
 
 export default function Page() {
@@ -46,9 +46,9 @@ export default function Page() {
         ))}
       </div>
       <div className="flex justify-end p-20 flex-col lg:flex-row lg:items-center tracking-tighter">
-        <button className="m-6 bg-green-600 p-4 rounded-xl">Live Matches</button>
-        <button className="m-6 bg-blue-600 p-4 rounded-xl">Upcoming Matches</button>
-        <button className="m-6 bg-slate-500 p-4 rounded-xl">All Matches</button>
+        <Link href="/admin/control" className="m-6 bg-green-600 p-4 rounded-xl">Live Matches</Link>
+        <Link href="/admin/control" className="m-6 bg-blue-600 p-4 rounded-xl">Upcoming Matches</Link>
+        <Link href="/admin/event" className="m-6 bg-slate-500 p-4 rounded-xl">All Matches</Link>
         <form action="/auth/logout" method="post"><button className="m-6 bg-red-600 p-4 rounded-xl flex justify-center items-center gap-2"><PiPowerFill/>Logout</button></form>
       </div>
     </div>
