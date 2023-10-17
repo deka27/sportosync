@@ -61,7 +61,7 @@ export default function Footer() {
   // Define your social media links here
   const socialLinks = [
     {
-      href: 'https://www.facebook.com/example',
+      href: 'https://www.facebook.com/',
       label: 'Facebook',
       icon: (
         <svg
@@ -75,7 +75,7 @@ export default function Footer() {
       ),
     },
     {
-      href: 'https://www.instagram.com/example',
+      href: 'https://www.instagram.com/',
       label: 'Instagram',
       icon: (
         <svg
@@ -89,7 +89,7 @@ export default function Footer() {
       ),
     },
     {
-      href: 'https://twitter.com/example',
+      href: 'https://twitter.com/',
       label: 'Twitter',
       icon: (
         <svg
