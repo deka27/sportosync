@@ -109,7 +109,7 @@ export default function Footer() {
     <footer className="bg-gradient-to-b from-[#000423] to-[black] lg:grid lg:grid-cols-5">
       <div className="relative block h-32 lg:col-span-2 lg:h-full">
         <Image
-          src="https://source.unsplash.com/CTMW4jxNEQg"
+          src="https://source.unsplash.com/Nmrxc-l86Bc"
           alt=""
           width={1500}
           height={1500}
@@ -128,7 +128,7 @@ export default function Footer() {
                 href="#"
                 className="block text-2xl font-medium text-gray-400 hover:opacity-75 sm:text-3xl no-underline"
               >
-                0123456789
+                7349223641
               </a>
             </p>
 
