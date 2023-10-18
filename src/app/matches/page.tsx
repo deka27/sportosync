@@ -164,7 +164,16 @@ export default function Page() {
                         </div>
                       </div>
                     </div>
-
+                    {event.winner && (
+                      <div className="flex flex-col justify-center items-center gap-2">
+                        <div>Winner</div>
+                        <div className="flex flex-row justify-center items-center gap-2 bg-white rounded-lg px-3 py-1">
+                          <div className="text-amber-400"><FaCrown /></div>
+                          <div className="text-black">{event.winner}</div>
+                          <div className="text-amber-400"><FaCrown /></div>                          
+                        </div>
+                      </div>
+                    )}
                     <div className="bg-white w-[35px] h-[35px] bottom-0 right-0 absolute m-2 rounded-br-lg clip-path-polygon-br"></div>
                   </div>
                   <div className="py-4">{event.status}</div>
@@ -349,6 +358,16 @@ export default function Page() {
                         </div>
                       </div>
                     </div>
+                    {event.winner && (
+                      <div className="flex flex-col justify-center items-center gap-2">
+                        <div>Winner</div>
+                        <div className="flex flex-row justify-center items-center gap-2 bg-white rounded-lg px-3 py-1">
+                          <div className="text-amber-400"><FaCrown /></div>
+                          <div className="text-black">{event.winner}</div>
+                          <div className="text-amber-400"><FaCrown /></div>                          
+                        </div>
+                      </div>
+                    )}
                     <div className="bg-white w-[35px] h-[35px] bottom-0 right-0 absolute m-2 rounded-br-lg clip-path-polygon-br"></div>
                   </div>
                   <div className="py-4">{event.status}</div>
