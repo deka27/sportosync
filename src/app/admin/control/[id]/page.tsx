@@ -66,21 +66,11 @@ export default function Event({ params }: any) {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-  
-    if (info) {
-      // Calculate the winner based on scores
-      let updatedWinner = "";
-      if (score_A > score_B) {
-        updatedWinner = info.team_A;
-      } else if (score_A < score_B) {
-        updatedWinner = info.team_B;
-      } else {
-        updatedWinner = "Tie";
-      }
+
   
       const { data, error } = await supabase
         .from("event")
-        .update({ status, score_A, score_B, winner: updatedWinner })
+        .update({ status, score_A, score_B })
         .eq("id", id)
         .select();
   
