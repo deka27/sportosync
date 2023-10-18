@@ -31,6 +31,7 @@ export default function Event({ params }: any) {
   const [status, setStatus] = useState("");
   const [score_A, setScore_A] = useState("");
   const [score_B, setScore_B] = useState("");
+  const [winner, setWinner] = useState("");
   const [formError, setFormError] = useState<string | null>(null);
   const [info, setInfo] = useState<{
     event_name: string;
@@ -65,26 +66,34 @@ export default function Event({ params }: any) {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-
-    // if (!status || !score_A || !score_B) {
-    //   setFormError("Please fill in all the fields correctly.");
-    //   return;
-    // }
-
-    const { data, error } = await supabase
-      .from("event")
-      .update({ status, score_A, score_B })
-      .eq("id", id)
-      .select();
-
-    if (error) {
-      setFormError("An error occurred while updating data.");
-    } else if (data) {
-      setFormError(null);
-      // Show a success toast
-      toast.success("Match updated successfully");
+  
+    if (info) {
+      // Calculate the winner based on scores
+      let updatedWinner = "";
+      if (score_A > score_B) {
+        updatedWinner = info.team_A;
+      } else if (score_A < score_B) {
+        updatedWinner = info.team_B;
+      } else {
+        updatedWinner = "Tie";
+      }
+  
+      const { data, error } = await supabase
+        .from("event")
+        .update({ status, score_A, score_B, winner: updatedWinner })
+        .eq("id", id)
+        .select();
+  
+      if (error) {
+        setFormError("An error occurred while updating data.");
+      } else if (data) {
+        setFormError(null);
+        // Show a success toast
+        toast.success("Match updated successfully");
+      }
     }
   };
+  
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -102,6 +111,7 @@ export default function Event({ params }: any) {
         setStatus(data.status);
         setScore_A(data.score_A);
         setScore_B(data.score_B);
+        setWinner(data.winner)
       }
     };
 
