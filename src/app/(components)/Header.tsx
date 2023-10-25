@@ -14,15 +14,16 @@ export const navLinks = [
     url: "/",
   },
   {
-    id: "live",
-    title: "Live",
-    url: "/live",
-  },
-  {
     id: "allmatches",
     title: "All Matches",
     url: "/matches",
   },
+  {
+    id: "awards",
+    title: "Awards",
+    url: "/awards",
+  },
+
   {
     id: "teams",
     title: "Teams",
