@@ -14,16 +14,15 @@ export const navLinks = [
     url: "/",
   },
   {
-    id: "allmatches",
-    title: "All Matches",
+    id: "events",
+    title: "Events",
     url: "/matches",
   },
-  {
-    id: "awards",
-    title: "Awards",
-    url: "/awards",
-  },
-
+  // {
+  //   id: "awards",
+  //   title: "Awards",
+  //   url: "/awards",
+  // },
   {
     id: "teams",
     title: "Teams",
@@ -34,12 +33,11 @@ export const navLinks = [
     title: "League",
     url: "/league",
   },
-  {
-    id: "fixture",
-    title: "Fixture",
-    url: "/fixture",
-  },
-  
+  // {
+  //   id: "fixture",
+  //   title: "Fixture",
+  //   url: "/fixture",
+  // },  
   {
     id: "admin",
     title: "Admin",

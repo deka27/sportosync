@@ -28,12 +28,21 @@ interface Images {
 }
 
 const images: Images = {
-  Houdu: "/images/img1.png",
-  Ngapu: "/images/img2.png",
-  Khouchi: "/images/img3.png",
-  Kapamodzü: "/images/img4.png",
-  Referee: "/images/img5.png",
-  Admin: "/images/img6.gif",
+  Anal: "/images/teams/Anal.png",
+  Angami: "/images/teams/Angami.png",
+  Ao: "/images/teams/Ao.png",
+  Chakesang: "/images/teams/Chakesang.png",
+  Chiru: "/images/teams/Chiru.png",
+  Lamkang_Moyon_Monsang: "/images/teams/Lamkang.png",
+  Lotha: "/images/teams/Lotha.png",
+  Mao: "/images/teams/Mao.png",
+  Maram: "/images/teams/Maram.png",
+  Maring: "/images/teams/Maring.png",
+  Poumai: "/images/teams/Poumai.png",
+  Rengma: "/images/teams/Rengma.png",
+  Sumi: "/images/teams/Sumi.png",
+  Tangkhul: "/images/teams/Tangkhul.png",
+  Zeliangrong: "/images/teams/Zeliangrong.png",
 };
 
 // EventRow component for rendering each employee row
@@ -127,6 +136,7 @@ function TeamTable({ teams }: { teams: Team[] }) {
 }
 
 export default function Page() {
+
   const [fetchError, setFetchError] = useState<string | null>(null);
   const [league, setLeague] = useState<Team[] | null>(null);
 
@@ -187,11 +197,11 @@ export default function Page() {
         )}
       </div>
 
-      <div className="my-16">
+      {/* <div className="my-16">
         {league && (
           <div className="w-full flex justify-center items-center flex-col">
             <div className="text-2xl mt-10 mb-20">Analytics</div>
-            <div className="flex gap-x-20 gap-y-20 flex-col md:flex-row">
+            <div className="flex gap-x-20 gap-y-20 flex-col">
               <div className="flex flex-col gap-6">
                 <BarChart width={350} height={300} data={league}>
                   <XAxis dataKey="team" tick={{ display: "none" }}>
@@ -331,7 +341,7 @@ export default function Page() {
             </div>
           </div>
         )}
-      </div>
+      </div> */}
     </div>
   );
 }

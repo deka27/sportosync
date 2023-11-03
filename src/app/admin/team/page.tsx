@@ -17,12 +17,23 @@ interface Images {
 }
 
 const images: Images = {
-  Houdu: "/images/img1.png",
-  Ngapu: "/images/img2.png",
-  Khouchi: "/images/img3.png",
-  Kapamodzü: "/images/img4.png",
   Referee: "/images/img5.png",
-  Admin: "/images/img6.gif"
+  Admin: "/images/img6.gif",
+  Anal: "/images/teams/Anal.png",
+  Angami: "/images/teams/Angami.png",
+  Ao: "/images/teams/Ao.png",
+  Chakesang: "/images/teams/Chakesang.png",
+  Chiru: "/images/teams/Chiru.png",
+  Lamkang_Moyon_Monsang: "/images/teams/Lamkang.png",
+  Lotha: "/images/teams/Lotha.png",
+  Mao: "/images/teams/Mao.png",
+  Maram: "/images/teams/Maram.png",
+  Maring: "/images/teams/Maring.png",
+  Poumai: "/images/teams/Poumai.png",
+  Rengma: "/images/teams/Rengma.png",
+  Sumi: "/images/teams/Sumi.png",
+  Tangkhul: "/images/teams/Tangkhul.png",
+  Zeliangrong: "/images/teams/Zeliangrong.png",
 };
 
 // EventRow component for rendering each employee row

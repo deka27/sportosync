@@ -7,31 +7,42 @@ import { SiRiotgames } from "react-icons/si";
 import { RiSwordFill } from "react-icons/ri";
 import FadeLoader from "react-spinners/FadeLoader";
 import Link from "next/link";
-import graph from "../../../public/images/graph.jpg"
+// import graph from "../../../public/images/graph.jpg"
 
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Label,
-  LabelList,
-  Legend,
-} from "recharts";
+// import {
+//   BarChart,
+//   Bar,
+//   XAxis,
+//   YAxis,
+//   CartesianGrid,
+//   Tooltip,
+//   Label,
+//   LabelList,
+//   Legend,
+// } from "recharts";
 
 interface Images {
   [teamName: string]: string; // Maps a team name (string) to an image source (string)
 }
 
 const images: Images = {
-  Houdu: "/images/img1.png",
-  Ngapu: "/images/img2.png",
-  Khouchi: "/images/img3.png",
-  Kapamodzü: "/images/img4.png",
   Referee: "/images/img5.png",
   Admin: "/images/img6.gif",
+  Anal: "/images/teams/Anal.png",
+  Angami: "/images/teams/Angami.png",
+  Ao: "/images/teams/Ao.png",
+  Chakesang: "/images/teams/Chakesang.png",
+  Chiru: "/images/teams/Chiru.png",
+  Lamkang_Moyon_Monsang: "/images/teams/Lamkang.png",
+  Lotha: "/images/teams/Lotha.png",
+  Mao: "/images/teams/Mao.png",
+  Maram: "/images/teams/Maram.png",
+  Maring: "/images/teams/Maring.png",
+  Poumai: "/images/teams/Poumai.png",
+  Rengma: "/images/teams/Rengma.png",
+  Sumi: "/images/teams/Sumi.png",
+  Tangkhul: "/images/teams/Tangkhul.png",
+  Zeliangrong: "/images/teams/Zeliangrong.png",
 };
 
 type Team = Database["public"]["Tables"]["team"]["Row"];
@@ -39,14 +50,16 @@ type Team = Database["public"]["Tables"]["team"]["Row"];
 type Player = Database["public"]["Tables"]["player"]["Row"];
 
 export default function Page() {
+  
   const [fetchError, setFetchError] = useState<string | null>(null);
   const [team, setTeam] = useState<Team[] | null>(null);
   const [curator, setCurator] = useState<Team[] | null>(null);
-  const [players, setPlayers] = useState<Player[] | null>(null);
+  // const [players, setPlayers] = useState<Player[] | null>(null);
 
   useEffect(() => {
+
     const fetchTeam = async () => {
-      const teamNamesToFilter = ["Houdu", "Ngapu", "Khouchi", "Kapamodzü"]; // Add the team names you want to filter here
+      const teamNamesToFilter = ["Lamkang_Moyon_Monsang", "Angami","Ao", "Anal", "Maram", "Chakesang", "Sumi", "Lotha", "Mao", "Rengma", "Chiru", "Tangkhul", "Maring", "Poumai", "Zeliangrong"]; // Add the team names you want to filter here
 
       const { data, error } = await supabase
         .from("team")
@@ -92,55 +105,55 @@ export default function Page() {
     fetchTeam();
   }, []);
 
-  useEffect(() => {
-    const fetchPlayers = async () => {
-      const teamNamesToFilter = ["Houdu", "Ngapu", "Khouchi", "Kapamodzü"];
-      const { data, error } = await supabase
-        .from("player")
-        .select()
-        .in("team", teamNamesToFilter);
+  // useEffect(() => {
+  //   const fetchPlayers = async () => {
+  //     const teamNamesToFilter = ["Houdu", "Ngapu", "Khouchi", "Kapamodzü"];
+  //     const { data, error } = await supabase
+  //       .from("player")
+  //       .select()
+  //       .in("team", teamNamesToFilter);
 
-      if (error) {
-        setFetchError("Could not fetch the data");
-        setPlayers(null);
-        console.log(error);
-      }
+  //     if (error) {
+  //       setFetchError("Could not fetch the data");
+  //       setPlayers(null);
+  //       console.log(error);
+  //     }
 
-      if (data) {
-        setPlayers(data as Player[]); // Type assertion for data as an array of Event
-        setFetchError(null);
-        console.log(data);
-      }
-    };
+  //     if (data) {
+  //       setPlayers(data as Player[]); // Type assertion for data as an array of Event
+  //       setFetchError(null);
+  //       console.log(data);
+  //     }
+  //   };
 
-    fetchPlayers();
-  }, []);
+  //   fetchPlayers();
+  // }, []);
 
-  const countPlayersByVillage = () => {
-    const villageCounts = {} as { [key: string]: number };
+  // const countPlayersByVillage = () => {
+  //   const villageCounts = {} as { [key: string]: number };
 
-    if (players) {
-      players.forEach((player) => {
-        const { village } = player;
-        if (typeof village === "string") {
-          if (villageCounts[village]) {
-            villageCounts[village]++;
-          } else {
-            villageCounts[village] = 1;
-          }
-        }
-      });
-    }
+  //   if (players) {
+  //     players.forEach((player) => {
+  //       const { village } = player;
+  //       if (typeof village === "string") {
+  //         if (villageCounts[village]) {
+  //           villageCounts[village]++;
+  //         } else {
+  //           villageCounts[village] = 1;
+  //         }
+  //       }
+  //     });
+  //   }
 
-    const data = Object.keys(villageCounts).map((village) => ({
-      village,
-      count: villageCounts[village],
-    }));
+  //   const data = Object.keys(villageCounts).map((village) => ({
+  //     village,
+  //     count: villageCounts[village],
+  //   }));
 
-    return data;
-  };
+  //   return data;
+  // };
 
-  const villageData = countPlayersByVillage();
+  // const villageData = countPlayersByVillage();
 
   return (
     <div className="container my-16 px-6 mx-auto flex flex-col gap-10">
@@ -160,14 +173,14 @@ export default function Page() {
         <div className="mt-16">
           {fetchError && <p>{fetchError}</p>}
           {team ? (
-            <div className="gap-16 md:gap-32 flex flex-col lg:flex-row text-white mt-8 justify-center items-center">
+            <div className="gap-16 md:gap-32 flex flex-col lg:flex-row text-white mt-8 justify-center items-center flex-wrap">
               {team.map((team) => (
                 <div
                   key={team.id}
                   className="mt-4 relative flex justify-center items-center"
                 >
                   <Link href={`/team/${team.team_name}`}>
-                    <div className="">
+                    <div className="flex flex-col justify-center items-center">
                       {team && team.team_name && images[team.team_name] && (
                         <Image
                           src={images[team.team_name]}
@@ -210,7 +223,7 @@ export default function Page() {
                   className="mt-4 relative flex justify-center items-center"
                 >
                   <Link href={`/team/${team.team_name}`}>
-                    <div className="">
+                    <div className="flex flex-col justify-center items-center">
                       {team && team.team_name && images[team.team_name] && (
                         <Image
                           src={images[team.team_name]}
@@ -236,7 +249,8 @@ export default function Page() {
           )}
         </div>
       </div>
-      {villageData ? (
+
+      {/* {villageData ? (
         <div className="p-2 lg:p-20 flex flex-col gap-6 h-[2000px] lg:h-fit">
           <div className="text-3xl font-semibold text-center my-6">
             Analytics
@@ -351,7 +365,7 @@ export default function Page() {
           </div>
           <div>Loading...</div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
