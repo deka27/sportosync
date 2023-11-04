@@ -52,8 +52,8 @@ const images: Images = {
 };
 
 export default function Team({ params }: any) {
-  // Check if params.id is 'Kapamodz%C3%BC' and set id accordingly
-  const id = params.id === "Kapamodz%C3%BC" ? "Kapamodzü" : params.id;
+  
+  const id = params.id;
 
   const [players, setPlayers] = useState<Player[] | null>(null);
   const [fetchError, setFetchError] = useState<string | null>(null);

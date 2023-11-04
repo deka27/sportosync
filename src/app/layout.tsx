@@ -5,6 +5,7 @@ import { Poppins } from 'next/font/google'
 import Header from './(components)/Header'
 import Footer from './(components)/Footer'
 import Line from './(components)/Line'
+import NextTopLoader from 'nextjs-toploader';
 
 export const dynamic = 'force-dynamic'
 
@@ -24,7 +25,8 @@ export default function RootLayout({
     <html lang="en">
       
       <body className={poppins.className}>
-      <Header/>
+      <NextTopLoader initialPosition={0.2} showSpinner={false}/>
+      <Header/>      
         {children}
       <Line/> 
       <Footer/> 
