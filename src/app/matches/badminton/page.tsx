@@ -20,6 +20,7 @@ async function fetchEventsBySport(setter: any, sport: string, status: string) {
   const { data, error } = await supabase
     .from("event")
     .select()
+    .order('id', { ascending: false })
     .eq("sport", sport)
     .eq("status", status);
 
