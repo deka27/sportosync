@@ -20,7 +20,7 @@ async function fetchEventsBySport(setter: any, sport: string, status: string) {
   const { data, error } = await supabase
     .from("event")
     .select()
-    .order('id', { ascending: false })
+    .order("id", { ascending: true })
     .eq("sport", sport)
     .eq("status", status);
 
@@ -54,6 +54,8 @@ export default function Page() {
   }, []);
 
   const images: Images = {
+    Referee: "/images/img5.png",
+    Admin: "/images/img6.gif",
     Anal: "/images/teams/Anal.png",
     Angami: "/images/teams/Angami.png",
     Ao: "/images/teams/Ao.png",
@@ -73,8 +75,14 @@ export default function Page() {
   return (
     <div>
       <div className="w-full h-[200px]  relative bg-gray-600">
-        <div className="absolute bottom-0 left-0 p-6 z-10 text-4xl md:text-5xl xl:text-6xl text-center flex justify-center items-center font-semibold shadow-lg">Badminton</div>
-        <a className="absolute bottom-0 right-0 p-6 z-10" href="/matches"><button className="bg-blue-950 shadow-lg p-2 text-center rounded-md">Back</button></a>
+        <div className="absolute bottom-0 left-0 p-6 z-10 text-4xl md:text-5xl xl:text-6xl text-center flex justify-center items-center font-semibold shadow-lg">
+          Badminton
+        </div>
+        <a className="absolute bottom-0 right-0 p-6 z-10" href="/matches">
+          <button className="bg-blue-950 shadow-lg p-2 text-center rounded-md">
+            Back
+          </button>
+        </a>
       </div>
       <div className="container my-16 px-6 mx-auto flex flex-col gap-10">
         <div className="Badminton">
@@ -375,7 +383,6 @@ export default function Page() {
               </div>
             )}
           </div>
-          
         </div>
       </div>
     </div>
