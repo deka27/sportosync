@@ -33,7 +33,7 @@ const images: Images = {
   Ao: "/images/teams/Ao.png",
   Chakesang: "/images/teams/Chakesang.png",
   Chiru: "/images/teams/Chiru.png",
-  Lamkang_Moyon_Monsang: "/images/teams/Lamkang.png",
+  LMM: "/images/teams/Lamkang.png",
   Lotha: "/images/teams/Lotha.png",
   Mao: "/images/teams/Mao.png",
   Maram: "/images/teams/Maram.png",
@@ -59,7 +59,7 @@ export default function Page() {
   useEffect(() => {
 
     const fetchTeam = async () => {
-      const teamNamesToFilter = ["Lamkang_Moyon_Monsang", "Angami","Ao", "Anal", "Maram", "Chakesang", "Sumi", "Lotha", "Mao", "Rengma", "Chiru", "Tangkhul", "Maring", "Poumai", "Zeliangrong"]; // Add the team names you want to filter here
+      const teamNamesToFilter = ["LMM", "Angami","Ao", "Anal", "Maram", "Chakesang", "Sumi", "Lotha", "Mao", "Rengma", "Chiru", "Tangkhul", "Maring", "Poumai", "Zeliangrong"]; // Add the team names you want to filter here
 
       const { data, error } = await supabase
         .from("team")

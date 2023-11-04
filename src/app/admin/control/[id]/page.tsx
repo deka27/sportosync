@@ -20,7 +20,7 @@ const images: Images = {
   Ao: "/images/teams/Ao.png",
   Chakesang: "/images/teams/Chakesang.png",
   Chiru: "/images/teams/Chiru.png",
-  Lamkang_Moyon_Monsang: "/images/teams/Lamkang.png",
+  LMM: "/images/teams/Lamkang.png",
   Lotha: "/images/teams/Lotha.png",
   Mao: "/images/teams/Mao.png",
   Maram: "/images/teams/Maram.png",
