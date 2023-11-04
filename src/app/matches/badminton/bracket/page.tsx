@@ -17,7 +17,7 @@ export default function page() {
       <div className="mt-16 px-12">
         <div className="mb-8 flex justify-between items-center">
           <div className="flex gap-4 text-3xl font-semibold">
-             Bracket
+          <span className="text-orange-500"><HiTrophy /></span> Bracket
           </div>
         </div>
         <Line />
