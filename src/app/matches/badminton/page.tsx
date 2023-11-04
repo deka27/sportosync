@@ -9,6 +9,8 @@ import { FaCrown } from "react-icons/fa";
 import { RiSwordFill } from "react-icons/ri";
 import { FadeLoader } from "react-spinners";
 import { BsFillPatchCheckFill, BsPlayCircleFill } from "react-icons/bs";
+import { HiTrophy } from "react-icons/hi2";
+import {IoArrowBackCircle} from 'react-icons/io5'
 
 interface Images {
   [teamName: string]: string; // Maps a team name (string) to an image source (string)
@@ -20,7 +22,7 @@ async function fetchEventsBySport(setter: any, sport: string, status: string) {
   const { data, error } = await supabase
     .from("event")
     .select()
-    .order('id', { ascending: false })
+    .order("id", { ascending: true })
     .eq("sport", sport)
     .eq("status", status);
 
@@ -54,6 +56,8 @@ export default function Page() {
   }, []);
 
   const images: Images = {
+    Referee: "/images/img5.png",
+    Admin: "/images/img6.gif",
     Anal: "/images/teams/Anal.png",
     Angami: "/images/teams/Angami.png",
     Ao: "/images/teams/Ao.png",
@@ -73,8 +77,21 @@ export default function Page() {
   return (
     <div>
       <div className="w-full h-[200px]  relative bg-gray-600">
-        <div className="absolute bottom-0 left-0 p-6 z-10 text-4xl md:text-5xl xl:text-6xl text-center flex justify-center items-center font-semibold shadow-lg">Badminton</div>
-        <a className="absolute bottom-0 right-0 p-6 z-10" href="/matches"><button className="bg-blue-950 shadow-lg p-2 text-center rounded-md">Back</button></a>
+        <div className="absolute bottom-0 left-0 p-6 z-10 text-4xl md:text-5xl xl:text-6xl text-center flex justify-center items-center font-semibold shadow-lg">
+          Badminton
+        </div>
+        <div className="absolute bottom-0 right-0 p-6 z-10 flex gap-4 flex-col lg:flex-row items-end">
+          <a href="/matches/badminton/bracket">
+            <button className="bg-blue-950 shadow-lg p-2 text-center rounded-md flex justify-center items-center gap-2">
+            <span className="text-orange-500"><HiTrophy /></span>Bracket
+            </button>
+          </a>
+          <a href="/matches">
+          <button className="bg-blue-950 shadow-lg p-2 text-center rounded-md flex justify-center items-center gap-2">
+            <span className="text-white"><IoArrowBackCircle /></span>Back
+            </button>
+          </a>
+        </div>
       </div>
       <div className="container my-16 px-6 mx-auto flex flex-col gap-10">
         <div className="Badminton">
@@ -375,7 +392,6 @@ export default function Page() {
               </div>
             )}
           </div>
-          
         </div>
       </div>
     </div>
