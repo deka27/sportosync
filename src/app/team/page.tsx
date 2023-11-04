@@ -179,7 +179,7 @@ export default function Page() {
                   key={team.id}
                   className="mt-4 relative flex justify-center items-center"
                 >
-                  <Link href={`/team/${team.team_name}`}>
+                  {/* <Link href={`/team/${team.team_name}`}>
                     <div className="flex flex-col justify-center items-center">
                       {team && team.team_name && images[team.team_name] && (
                         <Image
@@ -192,7 +192,21 @@ export default function Page() {
                       )}
                       <div className="py-4 text-center">{team.team_name}</div>
                     </div>
-                  </Link>
+                  </Link> */}
+                  <div>
+                    <div className="flex flex-col justify-center items-center">
+                      {team && team.team_name && images[team.team_name] && (
+                        <Image
+                          src={images[team.team_name]}
+                          alt={team.team_name}
+                          width={120}
+                          height={120}
+                          className="bg-white rounded-full p-1 shadow-lg"
+                        ></Image>
+                      )}
+                      <div className="py-4 text-center">{team.team_name}</div>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
